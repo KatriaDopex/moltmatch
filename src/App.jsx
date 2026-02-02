@@ -534,6 +534,8 @@ export default function App() {
   const [showBurst, setShowBurst] = useState(false);
   const [tab, setTab] = useState("discover");
   const [liveMode, setLiveMode] = useState(false);
+  const [tokenCA, setTokenCA] = useState("");
+  const [chartVisible, setChartVisible] = useState(false);
 
   // ─── Load persisted state ───
   useEffect(() => {
@@ -760,9 +762,114 @@ export default function App() {
       {view === "auth" && (
         <div style={{
           minHeight: "100vh", display: "flex", flexDirection: "column",
-          alignItems: "center", justifyContent: "center", padding: "40px 24px",
+          alignItems: "center", justifyContent: "flex-start", padding: "40px 24px",
           animation: "fadeInUp 0.5s ease-out",
         }}>
+
+          {/* ═══ PUMP.FUN CHART SECTION ═══ */}
+          <div style={{
+            width: "100%", maxWidth: 600, marginBottom: 32,
+            background: "rgba(255,255,255,0.01)", borderRadius: 20,
+            border: "1px solid rgba(255,110,199,0.08)", padding: 20,
+            backdropFilter: "blur(12px)",
+          }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 14 }}>
+              <span style={{ fontSize: 22 }}>📈</span>
+              <h2 style={{
+                fontFamily: "'Playfair Display', serif", fontSize: 18, fontWeight: 700,
+                background: "linear-gradient(135deg, #67e8f9, #c084fc)",
+                WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", margin: 0,
+              }}>Pump.fun Chart</h2>
+            </div>
+
+            <div style={{ display: "flex", gap: 8, marginBottom: 14 }}>
+              <input
+                value={tokenCA}
+                onChange={e => { setTokenCA(e.target.value); setChartVisible(false); }}
+                onKeyDown={e => e.key === "Enter" && tokenCA.trim() && setChartVisible(true)}
+                placeholder="Paste token CA..."
+                style={{
+                  flex: 1, background: "rgba(255,255,255,0.025)",
+                  border: "1px solid rgba(103,232,249,0.12)", borderRadius: 10,
+                  padding: "11px 14px", color: "rgba(200,230,255,0.9)",
+                  fontSize: 12, outline: "none", fontFamily: "'Space Mono', monospace",
+                  letterSpacing: 0.3,
+                }}
+              />
+              <button
+                onClick={() => tokenCA.trim() && setChartVisible(true)}
+                disabled={!tokenCA.trim()}
+                style={{
+                  padding: "11px 20px",
+                  background: tokenCA.trim()
+                    ? "linear-gradient(135deg, #67e8f9, #c084fc)"
+                    : "rgba(255,255,255,0.04)",
+                  border: "none", borderRadius: 10,
+                  color: tokenCA.trim() ? "#0a0712" : "rgba(200,180,220,0.3)",
+                  fontSize: 12, fontWeight: 700, cursor: tokenCA.trim() ? "pointer" : "default",
+                  fontFamily: "'Space Mono', monospace", transition: "all 0.2s",
+                  whiteSpace: "nowrap",
+                }}
+              >Load Chart</button>
+            </div>
+
+            {chartVisible && tokenCA.trim() && (
+              <div style={{
+                width: "100%", borderRadius: 12, overflow: "hidden",
+                border: "1px solid rgba(103,232,249,0.08)",
+                animation: "fadeInUp 0.4s ease-out",
+              }}>
+                <iframe
+                  src={`https://dexscreener.com/solana/${tokenCA.trim()}?embed=1&loadChartSettings=0&trades=0&info=0&chartLeftToolbar=0&chartTheme=dark&theme=dark&chartStyle=1&chartType=usd&interval=15`}
+                  style={{
+                    width: "100%", height: 420, border: "none",
+                    borderRadius: 12, background: "#0a0712",
+                  }}
+                  title="Token Chart"
+                  sandbox="allow-scripts allow-same-origin allow-popups"
+                />
+                <div style={{
+                  display: "flex", justifyContent: "space-between", alignItems: "center",
+                  padding: "8px 14px", background: "rgba(0,0,0,0.3)",
+                }}>
+                  <span style={{
+                    fontSize: 10, color: "rgba(103,232,249,0.4)",
+                    fontFamily: "'Space Mono', monospace", letterSpacing: 0.5,
+                  }}>
+                    {tokenCA.trim().slice(0, 6)}...{tokenCA.trim().slice(-4)}
+                  </span>
+                  <a
+                    href={`https://pump.fun/coin/${tokenCA.trim()}`}
+                    target="_blank" rel="noopener noreferrer"
+                    style={{
+                      fontSize: 10, color: "rgba(255,120,200,0.5)",
+                      fontFamily: "'Space Mono', monospace", textDecoration: "none",
+                    }}
+                    onMouseOver={e => e.currentTarget.style.color = "rgba(255,120,200,0.8)"}
+                    onMouseOut={e => e.currentTarget.style.color = "rgba(255,120,200,0.5)"}
+                  >View on pump.fun ↗</a>
+                </div>
+              </div>
+            )}
+
+            {!chartVisible && (
+              <div style={{
+                textAlign: "center", padding: "24px 0 8px",
+                color: "rgba(180,200,220,0.15)", fontSize: 11,
+                fontFamily: "'Space Mono', monospace",
+              }}>
+                Paste a Solana token CA to view the live chart
+              </div>
+            )}
+          </div>
+
+          {/* ═══ DIVIDER ═══ */}
+          <div style={{
+            width: 40, height: 1, background: "rgba(255,255,255,0.04)",
+            marginBottom: 32,
+          }} />
+
+          {/* ═══ AUTH SECTION ═══ */}
           <div style={{ fontSize: 48, marginBottom: 20, animation: "float 4s ease-in-out infinite" }}>🦞</div>
           <h1 style={{
             fontFamily: "'Playfair Display', serif", fontSize: 30, fontWeight: 700,
