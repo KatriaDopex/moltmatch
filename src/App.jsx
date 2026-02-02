@@ -950,6 +950,101 @@ export default function App() {
               moltbook.com/developers/apply
             </a>
           </div>
+
+          {/* ═══ SOCIAL LINKS ═══ */}
+          <div style={{
+            display: "flex", gap: 20, marginTop: 36, alignItems: "center", justifyContent: "center",
+          }}>
+            {/* Twitter / X Community */}
+            <a
+              href="https://x.com/i/communities/moltmatch"
+              target="_blank" rel="noopener noreferrer"
+              style={{
+                display: "flex", flexDirection: "column", alignItems: "center", gap: 8,
+                textDecoration: "none", padding: "16px 20px", borderRadius: 16,
+                background: "rgba(255,255,255,0.015)", border: "1px solid rgba(103,232,249,0.08)",
+                transition: "all 0.3s ease", cursor: "pointer", minWidth: 110,
+              }}
+              onMouseOver={e => {
+                e.currentTarget.style.borderColor = "rgba(103,232,249,0.3)";
+                e.currentTarget.style.background = "rgba(103,232,249,0.04)";
+                e.currentTarget.style.transform = "translateY(-2px)";
+                e.currentTarget.style.boxShadow = "0 8px 24px rgba(103,232,249,0.08)";
+              }}
+              onMouseOut={e => {
+                e.currentTarget.style.borderColor = "rgba(103,232,249,0.08)";
+                e.currentTarget.style.background = "rgba(255,255,255,0.015)";
+                e.currentTarget.style.transform = "translateY(0)";
+                e.currentTarget.style.boxShadow = "none";
+              }}
+            >
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none" style={{ filter: "drop-shadow(0 0 8px rgba(103,232,249,0.3))" }}>
+                <defs>
+                  <linearGradient id="tw-grad" x1="0" y1="0" x2="32" y2="32">
+                    <stop offset="0%" stopColor="#67e8f9"/>
+                    <stop offset="100%" stopColor="#c084fc"/>
+                  </linearGradient>
+                </defs>
+                <circle cx="16" cy="16" r="15" stroke="url(#tw-grad)" strokeWidth="1.5" fill="rgba(103,232,249,0.04)"/>
+                <path d="M18.2 14.3 23.5 8h-1.3l-4.6 5.5L13.5 8H8.5l5.6 8.2L8.5 23h1.3l4.9-5.8 3.9 5.8h5l-5.8-8.5.4-.2zm-1.7 2.1-.6-.8L10.5 9.2h2l3.7 5.3.6.8 4.7 6.8h-2l-3.8-5.5-.2-.4z" fill="url(#tw-grad)"/>
+                <circle cx="24" cy="8" r="2.5" fill="#67e8f9" opacity="0.6">
+                  <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/>
+                </circle>
+                <circle cx="8" cy="24" r="1.5" fill="#c084fc" opacity="0.4">
+                  <animate attributeName="opacity" values="0.4;0.8;0.4" dur="2.5s" repeatCount="indefinite"/>
+                </circle>
+              </svg>
+              <span style={{
+                fontFamily: "'Space Mono', monospace", fontSize: 10,
+                color: "rgba(103,232,249,0.6)", letterSpacing: 1.5, fontWeight: 600,
+              }}>COMMUNITY</span>
+            </a>
+
+            {/* GitHub Repo */}
+            <a
+              href="https://github.com/KatriaDopex/moltmatch"
+              target="_blank" rel="noopener noreferrer"
+              style={{
+                display: "flex", flexDirection: "column", alignItems: "center", gap: 8,
+                textDecoration: "none", padding: "16px 20px", borderRadius: 16,
+                background: "rgba(255,255,255,0.015)", border: "1px solid rgba(192,132,252,0.08)",
+                transition: "all 0.3s ease", cursor: "pointer", minWidth: 110,
+              }}
+              onMouseOver={e => {
+                e.currentTarget.style.borderColor = "rgba(192,132,252,0.3)";
+                e.currentTarget.style.background = "rgba(192,132,252,0.04)";
+                e.currentTarget.style.transform = "translateY(-2px)";
+                e.currentTarget.style.boxShadow = "0 8px 24px rgba(192,132,252,0.08)";
+              }}
+              onMouseOut={e => {
+                e.currentTarget.style.borderColor = "rgba(192,132,252,0.08)";
+                e.currentTarget.style.background = "rgba(255,255,255,0.015)";
+                e.currentTarget.style.transform = "translateY(0)";
+                e.currentTarget.style.boxShadow = "none";
+              }}
+            >
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none" style={{ filter: "drop-shadow(0 0 8px rgba(192,132,252,0.3))" }}>
+                <defs>
+                  <linearGradient id="gh-grad" x1="0" y1="0" x2="32" y2="32">
+                    <stop offset="0%" stopColor="#c084fc"/>
+                    <stop offset="100%" stopColor="#ff6ec7"/>
+                  </linearGradient>
+                </defs>
+                <circle cx="16" cy="16" r="15" stroke="url(#gh-grad)" strokeWidth="1.5" fill="rgba(192,132,252,0.04)"/>
+                <path d="M16 7C11 7 7 11 7 16c0 4 2.6 7.4 6.2 8.6.5.1.6-.2.6-.4v-1.5c-2.5.5-3-1.2-3-1.2-.4-1.1-1-1.4-1-1.4-.8-.6.1-.5.1-.5.9.1 1.4.9 1.4.9.8 1.4 2.1 1 2.6.8.1-.6.3-1 .6-1.2-2-.2-4.1-1-4.1-4.5 0-1 .4-1.8 1-2.4-.1-.2-.4-1.1.1-2.4 0 0 .8-.3 2.5 1a8.7 8.7 0 014.6 0c1.7-1.3 2.5-1 2.5-1 .5 1.3.2 2.2.1 2.4.6.6 1 1.4 1 2.4 0 3.5-2.1 4.3-4.1 4.5.3.3.6.8.6 1.7v2.5c0 .3.2.6.6.4C22.4 23.4 25 20 25 16c0-5-4-9-9-9z" fill="url(#gh-grad)"/>
+                <circle cx="24" cy="8" r="2" fill="#ff6ec7" opacity="0.5">
+                  <animate attributeName="opacity" values="0.5;0.9;0.5" dur="2.2s" repeatCount="indefinite"/>
+                </circle>
+                <circle cx="7" cy="23" r="1.8" fill="#c084fc" opacity="0.35">
+                  <animate attributeName="opacity" values="0.35;0.7;0.35" dur="2.8s" repeatCount="indefinite"/>
+                </circle>
+              </svg>
+              <span style={{
+                fontFamily: "'Space Mono', monospace", fontSize: 10,
+                color: "rgba(192,132,252,0.6)", letterSpacing: 1.5, fontWeight: 600,
+              }}>GITHUB</span>
+            </a>
+          </div>
         </div>
       )}
 
